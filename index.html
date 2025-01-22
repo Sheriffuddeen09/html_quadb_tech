@@ -337,7 +337,7 @@
 
     <!-- Weather Section -->
 <div id="weathers" class="alert alert-info text-center">
-  Loading weather data...
+  
 </div>
 
 <script>
@@ -432,6 +432,139 @@
   menuBtnClose.addEventListener('click', () => {
     sidebar.style.display = 'none';
   });
+
+  // JavaScript to handle interactivity
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const layoutToggle = document.getElementById('layoutToggle');
+    const logoutButton = document.getElementById('logoutButton');
+    const largeSidebarToggle = document.getElementById('largeSidebarToggle');
+    const smallSidebarToggle = document.getElementById('smallSidebarToggle');
+  
+    let currentTheme = 'light'; // Default theme
+    let layoutMode = 'flex'; // Default layout mode
+  
+    // Toggle search bar visibility
+    searchButton.addEventListener('click', () => {
+      if (searchInput.classList.contains('hidden')) {
+        searchInput.classList.remove('hidden');
+      } else {
+        searchInput.classList.add('hidden');
+      }
+    });
+  
+    // // Toggle layout mode
+    // layoutToggle.addEventListener('click', () => {
+    //   layoutMode = layoutMode === 'flex' ? 'grid' : 'flex';
+    //   console.log(`Layout mode switched to ${layoutMode}`);
+    // });
+  
+    // Logout button functionality
+    logoutButton.addEventListener('click', () => {
+      alert('Logged out successfully!');
+      // Perform any logout logic here
+    });
+  
+    // Sidebar toggle functionality
+    largeSidebarToggle.addEventListener('click', () => {
+      console.log('Large sidebar toggle clicked');
+    });
+  
+    smallSidebarToggle.addEventListener('click', () => {
+      console.log('Small sidebar toggle clicked');
+    });
+  });
+  
+  // script.js
+
+// Handle sidebar toggle
+const sidebars = document.getElementById('sidebar');
+const menuButton = document.getElementById('menuButton');
+const menuButtons = document.getElementById('menuButtons');
+
+// Function to toggle visibility and adjust button opacity
+function toggleSidebar() {
+  sidebars.classList.toggle('hidden'); // Toggle the sidebar visibility
+
+  // If the sidebar is hidden, show the menuButtons
+  if (sidebars.classList.contains('hidden')) {
+    menuButtons.style.opacity = '1'; // Make menuButtons visible
+    menuButtons.style.pointerEvents = 'auto'; // Enable interaction with the button
+  } else {
+    menuButtons.style.opacity = '0'; // Make menuButtons invisible
+    menuButtons.style.pointerEvents = 'none'; // Disable interaction with the button
+  }
+}
+
+// Initial state: menuButtons should be hidden
+menuButtons.style.opacity = '0';
+menuButtons.style.pointerEvents = 'none';
+
+// Add event listeners to the menuButton and menuButtons
+menuButton.addEventListener('click', toggleSidebar);
+menuButtons.addEventListener('click', toggleSidebar);
+
+// Handle theme (example of applying a theme class)
+const theme = 'dark'; // Example: Set your theme (e.g., 'dark' or 'light')
+
+// Add theme class to the sidebar
+if (theme) {
+  sidebars.classList.add(theme);
+}
+
+
+const openModalButton = document.getElementById('openModalButton');
+const openModalButtons = document.getElementById('openModalButtons');
+const modals = document.getElementById('modal');
+const closeModal = document.getElementById('closeModal');
+const addTaskButton = document.getElementById('addTask');
+const taskInput = document.getElementById('taskInput');
+const taskList = document.getElementById('taskList');
+
+// Show the modal when clicking the "Add Weather" button
+openModalButton.addEventListener('click', () => {
+  modals.style.display = 'block';
+});
+openModalButtons.addEventListener('click', () => {
+    modals.style.display = 'block';
+  });
+
+// Close the modal when clicking the close button
+closeModal.addEventListener('click', () => {
+  modals.style.display = 'none';
+});
+
+
+// Close the modal when clicking outside the modal content
+window.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    modals.style.display = 'none';
+  }
+});
+
+const themeToggle = document.getElementById('themeToggle');
+const rootElement = document.documentElement; // Refers to <html>
+
+// Check and apply saved theme preference
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  rootElement.classList.add('dark'); // Apply dark mode
+} else {
+  rootElement.classList.remove('dark'); // Default to light mode
+}
+
+// Add click event listener to the button
+themeToggle.addEventListener('click', () => {
+  // Toggle the 'dark' class on the <html> element
+  const isDarkMode = rootElement.classList.toggle('dark');
+
+  // Save the theme preference
+  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+});
+
+
+
 </script>
 
 </body>
